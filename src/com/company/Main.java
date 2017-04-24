@@ -6,6 +6,9 @@ import java.util.concurrent.Executors;
 public class Main {
 
     public static void main(String[] args) {
+        args[0] = "D:\\11.txt";
+        args[1] = "D:\\12.txt";
+        args[2] = "D:\\13.txt";
         ResultStatistics resultStatistics = new ResultStatistics();
         int countOfThreads = 10;
         ExecutorService executor = Executors.newFixedThreadPool(countOfThreads);

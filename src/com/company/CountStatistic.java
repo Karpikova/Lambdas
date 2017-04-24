@@ -58,7 +58,7 @@ public class CountStatistic implements Runnable{
 
             num = Integer.valueOf(word);
             synchronized (resultStatistics){
-                expression.sum(resultStatistics.getSum(), num);
+                resultStatistics.setSum(expression.sum(resultStatistics.getSum(), num));
             }
         }
           CountStatistic.PrintStatistics(resultStatistics);
