@@ -1,11 +1,24 @@
 package com.company;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Main {
 
     public static void main(String[] args) {
+
+        List<Integer> all = new ArrayList<Integer>();
+        all.add(1);
+        all.add(-2);
+        all.add(5);
+        all.stream().forEach((y)-> {if (y>0) y=y; else y=0;});
+        for (Integer e:
+                all) {
+            System.out.println(e);
+        }
+
         args[0] = "D:\\11.txt";
         args[1] = "D:\\12.txt";
         args[2] = "D:\\13.txt";

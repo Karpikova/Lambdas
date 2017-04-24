@@ -4,6 +4,10 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -50,16 +54,19 @@ public class CountStatistic implements Runnable{
     }
 
     public void HandleText(String allText) {
+        List<Integer> all = new ArrayList<Integer>();
         String[] splitted = allText.split(" ");
         int num;
         for (String word : splitted) {
             if (word.equals(""))
                 continue;
-
             num = Integer.valueOf(word);
-            synchronized (resultStatistics){
-                resultStatistics.setSum(expression.sum(resultStatistics.getSum(), num));
-            }
+            all.add(num);
+        }
+        Optional<Integer> cur_sum = all.stream().filter((nm) -> nm%2==0).reduce((x, y)-> x+y);
+
+        synchronized (resultStatistics){
+            resultStatistics.setSum(expression.sum(resultStatistics.getSum(), cur_sum.get()));
         }
           CountStatistic.PrintStatistics(resultStatistics);
     }
